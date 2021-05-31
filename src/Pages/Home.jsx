@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { pegarSearch, pegarSearchCheckbox } from "../api/api";
 import { Link } from 'react-router-dom';
 import styled from '../Styles/Home.module.css'
+import { Helmet } from 'react-helmet';
 
 const { Search } = Input;
 const { Title } = Typography;
@@ -54,6 +55,10 @@ export default function Home() {
         {(dados !== {} || dados !== undefined) &&
           <>
             <main>
+            <Helmet>
+              <meta charSet="utf-8"/>
+              <meta name="og:description" content="pesquisa no mejorconsalud.com" />
+            </Helmet>
               {(data === []) ?
                 <div>
                   <Title level={2}>Não existem artigos relacionados ao termo pesquisado!</Title>
@@ -61,6 +66,7 @@ export default function Home() {
                 :
                 <div>
                  { data !== undefined &&
+                  
                   data.map(({ id, title, headline, featured_media }) => (
                     <div key={id}> 
                       <div className={styled.Item}>
